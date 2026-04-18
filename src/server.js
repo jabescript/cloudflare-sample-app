@@ -8,7 +8,12 @@ import {
   InteractionType,
   verifyKey,
 } from 'discord-interactions';
-import { AWW_COMMAND, INVITE_COMMAND } from './commands.js';
+import {
+  AWW_COMMAND,
+  INVITE_COMMAND,
+  CAT_COMMAND,
+  ECHO_COMMAND,
+} from './commands.js';
 import { getCuteUrl } from './reddit.js';
 import { InteractionResponseFlags } from 'discord-interactions';
 
@@ -75,6 +80,25 @@ router.post('/', async (request, env) => {
           data: {
             content: INVITE_URL,
             flags: InteractionResponseFlags.EPHEMERAL,
+          },
+        });
+      }
+      case CAT_COMMAND.name: {
+        const res = await fetch('https://api.thecatapi.com/v1/images/search');
+        const data = await res.json();
+        return new JsonResponse({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: data[0].url,
+          },
+        });
+      }
+      case ECHO_COMMAND.name: {
+        const message = interaction.data.options[0].value;
+        return new JsonResponse({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: `You said: ${message}`,
           },
         });
       }
