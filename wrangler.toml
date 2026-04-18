@@ -17,6 +17,9 @@ enabled = false
 persist = true
 head_sampling_rate = 1
 
+[secrets]
+required = [ "DISCORD_APPLICATION_ID", "DISCORD_PUBLIC_KEY", "DISCORD_TOKEN" ]
+
 # [secrets]
 # DISCORD_TOKEN
 # DISCORD_PUBLIC_KEY
