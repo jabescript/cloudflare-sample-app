@@ -2,14 +2,6 @@ name = "discord-stupid-cat-bot"
 main = "./src/server.js"
 compatibility_date="2023-05-18"
 
-[observability]
-[observability.logs]
-enabled = true
-invocation_logs = true
-
-[observability.traces]
-enabled = false
-
 [secrets]
 required = [ "DISCORD_APPLICATION_ID", "DISCORD_PUBLIC_KEY", "DISCORD_TOKEN", "DISCORD_TEST_GUILD_ID" ]
 
